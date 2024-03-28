@@ -1,0 +1,28 @@
+#include <stdio.h>
+int summ_finder(int* arr, int x, int N)
+{
+    int f=0;
+    for (int i=0; i<N; i++)
+    {
+        for (int k=1; k<N; k++)
+        {
+            if (arr[i]+arr[k]==x)
+            {
+                printf("%d, %d \n", arr[i], arr[k]);
+                f++;
+            }
+        }
+    }
+    if (f==0) {printf("We have none numbers");}
+    return 0;
+}
+int main()
+{
+    int summa;
+    const int massiv_length = 10;
+    int arr[] = {1, 2, 3, 5, 7, 11, 13, 17, 19, 23};
+    printf("Insert summ \n");
+    scanf("%d",&summa);
+    summ_finder(arr,summa,massiv_length);
+    return 0;
+}
