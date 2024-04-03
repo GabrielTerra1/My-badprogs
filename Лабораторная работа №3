@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 double binary_degree(double accuracy, double squared);
 
@@ -7,37 +8,42 @@ double binary_degree(double accuracy, double squared);
 int main()
 {
     double accuracy, squared;
-    printf("Input degree and squared-number");
-    scanf("%lf, %lf", &accuracy, &squared);
+    printf("Input degree and squared-number \n");
+    scanf("%lf", &accuracy);
+    scanf("%lf", &squared);
     accuracy = pow(10, accuracy);
     binary_degree(accuracy, squared);
-    printf("");
     
 }
 
 double binary_degree(double accuracy, double squared)
 {
     double left = 0, right = squared;
-    double c;
+    double c = 0, mid = 0;
+    //printf("%lf, %lf \n", left, right);
     while (left<=right)
     {
-        double mid = (left+right)/2;
-        if (mid-c<0)
+        mid = (left+right)/2;
+        //printf("%lf", mid);
+        if (((mid*mid)-squared) == 0)
+        {
+            printf("%lf \n", mid);
+            return (mid);
+        }
+        if (mid*mid-squared<0)
         {
             left = left+accuracy;
         }
-        if (mid-c>0)
+        if (mid*mid-squared>0)
         {
             right = right-accuracy;
         }
-        if (abs((mid*mid)-squared)<abs((c*c-squared))
+        if (abs(c)>abs(mid*mid-squared))
         {
-            c = mid;
-        }
-        if (((mid*mid)-squared) == 0)
-        {
-            return c;
+            c = mid*mid-squared;
+            //printf("%lf", c);
         }
     }
-    return c;
+    printf("\n %lf", mid);
+    return mid;
 }
