@@ -1,0 +1,26 @@
+#include<stdio.h>
+long int function_prime (int x)
+    {
+    long int a;
+    int count;
+    for (int i=1; i<=x; i++)
+        {
+            a = i*i+i+41;
+            for (int k=2; k<(a/2); k++)
+            {
+                if (a % k == 0)
+                {
+                    break;
+                }
+                count++;
+            }
+        }
+    return count;
+    }
+int main ()
+{
+    int range;
+    range = 1000000;
+    //function_prime (range);
+    printf("In this range we have %d numbers", function_prime (range));
+}
