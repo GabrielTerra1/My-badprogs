@@ -1,26 +1,35 @@
-#include<stdio.h>
-long int function_prime (int x)
-    {
-    long int a;
-    int count;
-    for (int i=1; i<=x; i++)
-        {
-            a = i*i+i+41;
-            for (int k=2; k<(a/2); k++)
-            {
-                if (a % k == 0)
-                {
-                    break;
-                }
-                count++;
-            }
-        }
-    return count;
-    }
-int main ()
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
+int Palindrom_detector (char* argument)
 {
-    int range;
-    range = 1000000;
-    //function_prime (range);
-    printf("In this range we have %d numbers", function_prime (range));
+    size_t count = 1;
+    while (argument[count] != "")
+    {
+        count++;
+    }
+    printf("%d", count);
+    for (size_t i = 1; i<=count; count++)
+    {
+        if (argument[i] != argument [count-i])
+        {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main()
+{
+    char* x = 0;
+    printf("Please insert a palindrom_tested number \n");
+    scanf("%s", &x);
+    if (Palindrom_detector(x))
+    {
+        printf("Your number is a Palindrom");
+    }
+    else {
+        printf("Your number isn't a Palindrom");
+    }
 }
