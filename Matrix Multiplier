@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int MatrixFiller (int RowsA, int ColsA)
+{
+    int A = (int)malloc(RowsA * sizeof(int* ));
+    for (int i=0;i<RowsA;i++) {
+        A[i] = (int)malloc(ColsA sizeof(int));
+    }
+    for (int i=0;i<RowsA;i++) {
+        for (int j=0 ; j < ColsA; j++) {
+            printf("Please insert the element from %d row and %d column: ", i+1, j+1);
+            scanf ("%d", &A[i][j]);
+        }
+    }
+
+    return (A);
+}
+
+int MatrixMultiplicator(int A, int rowsA, int colsA, int B, int rowsB, int colsB) {
+    int result = (int)malloc(rowsA * sizeof(int));
+    for (int i = 0; i < rowsA; i++) {
+        result[i] = (int)malloc(colsB * sizeof(int));
+        for (int j = 0; j < colsB; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < colsA; k++) {
+                result[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    int RowsA, ColsA, RowsB, ColsB;
+    printf("Please insert amount of rows for matrix A: ");
+    scanf("%d", &RowsA);
+    printf("Please insert amount of columns for matrix A: ");
+    scanf("%d", &ColsA);
+
+    printf("Please insert amount of rows for matrix B: ");
+    scanf("%d", &RowsB);
+    printf("Please insert amount of columns for matrix B: ");
+    scanf("%d", &ColsB);
+    if (RowsA != ColsB) {
+        printf("Error, wrong matrix size");
+        return 0;
+    }
+    int A = MatrixFiller(RowsA, ColsA);
+    int B = MatrixFiller(RowsB, ColsB);
+    int** C = MatrixMultiplicator(A, RowsA, ColsA, B, RowsB, ColsB);
+    for (int i = 0; i < RowsA; i++) {
+            for (int j = 0; j < ColsB; j++) {
+                printf("%d ", C[i][j]);
+            }
+            printf("\n");
+    }
+}
