@@ -1,35 +1,23 @@
 #include <stdio.h>
-#include <math.h>
 #include <string.h>
 
-int Palindrom_detector (char* argument)
+void Palindrom_tester (char* word)
 {
-    size_t count = 1;
-    while (argument[count] != "")
-    {
-        count++;
-    }
-    printf("%d", count);
-    for (size_t i = 1; i<=count; count++)
-    {
-        if (argument[i] != argument [count-i])
-        {
-            return 0;
+    int n = strlen(word)-1;
+    for (int i=0; i!=(strlen(word)/2); i++) {
+        if (word[i] != word [n]) {
+            printf("No");
+            break;
         }
+    printf("Yes");
     }
-    return 1;
 }
 
 int main()
 {
-    char* x = 0;
-    printf("Please insert a palindrom_tested number \n");
-    scanf("%s", &x);
-    if (Palindrom_detector(x))
-    {
-        printf("Your number is a Palindrom");
-    }
-    else {
-        printf("Your number isn't a Palindrom");
-    }
+    char word[50];
+    printf("Insert a tested word \n");
+    scanf("%s", word);
+    //printf("%s", word);
+    Palindrom_tester(word);
 }
